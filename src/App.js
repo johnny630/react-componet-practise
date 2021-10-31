@@ -1,23 +1,25 @@
-import React, { useState} from "react";
-import "./style.css";
+import React, { useState, Fragment } from 'react';
+import './style.css';
 
-import Wrapper from './componets/Helpers/Wrapper';
 import AddUser from './componets/Users/AddUser';
-import UsersList from './componets/Users/UsersList'
+import UsersList from './componets/Users/UsersList';
 
 export default function App() {
   const [usersList, userUsersList] = useState([]);
 
   const addUserHandler = (uName, uAge) => {
     userUsersList((prevUserList) => {
-      return [...prevUserList, {name: uName, age: uAge, id: Math.random().toString() }];
+      return [
+        ...prevUserList,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
     });
   };
 
   return (
-    <Wrapper>
+    <Fragment>
       <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList}/>
-    </Wrapper>
+      <UsersList users={usersList} />
+    </Fragment>
   );
 }
